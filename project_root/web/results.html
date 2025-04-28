@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Classification Result</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>News Classification Result</h1>
+        <div id="loading" class="loading-animation">
+            <div class="spinner"></div>
+            <p>Analyzing...</p>
+        </div>
+        <div id="result" class="hidden">
+            <div id="animation" class="animation-container"></div>
+            <p id="classification"></p>
+            <div id="explainability" class="explainability-container">
+                <h2>Explainability</h2>
+                <p id="explanation"></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

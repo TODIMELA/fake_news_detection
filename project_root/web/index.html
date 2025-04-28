@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Fake News Detector</h1>
+        <form id="newsForm" action="results.html" method="GET">
+            <div class="form-group">
+                <label for="inputType">Input Type:</label>
+                <select id="inputType" name="inputType">
+                    <option value="text">Text</option>
+                    <option value="url">Twitter URL</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="newsInput">Enter Text or Twitter URL:</label>
+                <textarea id="newsInput" name="newsInput" rows="5" required></textarea>
+            </div>
+            <button type="submit">Check News</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+# Name of the workflow
+name: Fake News Detection CI/CD
+
+# Trigger the workflow on push to the main branch
+on:
+  push:
+    branches:
+      - main
+
+# Jobs to be executed
+jobs:
+  # First job: Build and Test
+  Build-and-Test:
+    # Run on the latest Ubuntu version
+    runs-on: ubuntu-latest
+
+    # Steps to be executed in this job
+    steps:
+      # Step 1: Check out the code
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python 3.10
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      # Step 3: Install dependencies from requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r project_root/requirements.txt
+
+      # Step 4: Run all tests from the tests folder using pytest
+      - name: Run tests
+        run: |
+          cd project_root/src
+          pytest tests
+  
+  # Second job: Deploy (runs only if Build-and-Test succeeds)
+  Deploy:
+    # This job depends on the Build-and-Test job
+    needs: Build-and-Test
+    # Run on the latest Ubuntu version
+    runs-on: ubuntu-latest
+
+    # Steps to be executed in this job
+    steps:
+      # Step 1: Check out the code
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python 3.10
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      # Step 3: Install dependencies from requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r project_root/requirements.txt
+      
+      # Step 4: Run the app.py file from the api folder using python command
+      - name: Run API
+        run: |
+          cd project_root/src/api
+          python app.py
